@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Idh-hN-Hef" customClass="TSDiscoverCollectionViewCell" customModule="TVShow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3NJ-PH-DMC" userLabel="coverImage">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="106.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3NJ-PH-DMC" secondAttribute="height" multiplier="216:288" id="Sgj-dT-bDH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XH-6t-9kD" userLabel="catalogLabel">
+                        <rect key="frame" x="0.0" y="146.5" width="80" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Labelaslfkdjklasjfdlksjf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myV-Ej-GVo" userLabel="titleLabel">
+                        <rect key="frame" x="0.0" y="111" width="80" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7XH-6t-9kD" secondAttribute="bottom" priority="750" id="36P-ym-VGJ"/>
+                <constraint firstItem="myV-Ej-GVo" firstAttribute="leading" secondItem="Idh-hN-Hef" secondAttribute="leading" id="8VF-me-Een"/>
+                <constraint firstItem="7XH-6t-9kD" firstAttribute="top" secondItem="myV-Ej-GVo" secondAttribute="bottom" priority="250" constant="7" id="Bnc-he-0Xb"/>
+                <constraint firstAttribute="trailing" secondItem="3NJ-PH-DMC" secondAttribute="trailing" id="Ht1-tJ-kWd"/>
+                <constraint firstItem="7XH-6t-9kD" firstAttribute="leading" secondItem="Idh-hN-Hef" secondAttribute="leading" id="MUU-xT-Zid"/>
+                <constraint firstItem="3NJ-PH-DMC" firstAttribute="leading" secondItem="Idh-hN-Hef" secondAttribute="leading" id="k5U-i5-PDD"/>
+                <constraint firstItem="myV-Ej-GVo" firstAttribute="top" secondItem="3NJ-PH-DMC" secondAttribute="bottom" priority="800" constant="5" id="kNX-Ym-58v"/>
+                <constraint firstAttribute="trailing" secondItem="myV-Ej-GVo" secondAttribute="trailing" id="kgs-QA-MGh"/>
+                <constraint firstAttribute="trailing" secondItem="7XH-6t-9kD" secondAttribute="trailing" id="ttP-yY-b1n"/>
+                <constraint firstItem="3NJ-PH-DMC" firstAttribute="top" secondItem="Idh-hN-Hef" secondAttribute="top" id="ypz-xz-o38"/>
+            </constraints>
+            <connections>
+                <outlet property="catalogLabel" destination="7XH-6t-9kD" id="GUi-5M-rmm"/>
+                <outlet property="coverImageView" destination="3NJ-PH-DMC" id="4ay-pz-BVI"/>
+                <outlet property="titleLabel" destination="myV-Ej-GVo" id="eOj-8n-zB9"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>
