@@ -45,10 +45,11 @@ extension UIImage {
             
             let enumerator = cls.objectEnumerator();
 //            var curColor:NSArray? = nil;
-            var maxColor:Array<UInt8>! = nil;
+
+            var maxColor:[UInt8]! = nil;
             var maxCount = 0;
             
-            while let curColor = enumerator.nextObject() as? Array<UInt8> {
+            while let curColor = enumerator.nextObject() as? [UInt8] {
                 print(curColor);
                 let tmpCount = cls.count(for: curColor);
                 if tmpCount < maxCount {
@@ -58,11 +59,14 @@ extension UIImage {
                 maxCount = tmpCount;
                 maxColor = curColor;
             }
-            let r = CGFloat(Float(maxColor[0])/255.0);
-            let g = CGFloat(Float(maxColor[1])/255.0);
-            let b = CGFloat(Float(maxColor[2])/255.0);
-            let a = CGFloat(Float(maxColor[3])/255.0);
-            return UIColor(red: r, green: g, blue: b, alpha: a);
+            let r = maxColor[0];
+            print(r)
+            let g = maxColor[1];
+            let b = maxColor[2];
+            let a = maxColor[3];
+            
+            return UIColor.init(red: CGFloat(Float(r) / 255.0), green: CGFloat(Float(g) / 255.0), blue: CGFloat(Float(b) / 255.0), alpha: CGFloat(Float(a) / 255.0));
+            
         } else {
             return UIColor.white;
         }
