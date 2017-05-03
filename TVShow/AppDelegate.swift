@@ -10,7 +10,6 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
     public func applicationDidFinishLaunching(_ application: UIApplication) {
         let mainViewController = MainTabBarController()
