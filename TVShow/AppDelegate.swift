@@ -16,8 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
-        let image:UIImage = UIImage.init(named: "haha.jpg")!;
-        image.mostColor();
+        let image = UIImage(named: "haha.jpg")!
+        
+        
+        let aView = UIView(frame:CGRect(x:0,y:0,width:image.size.width, height:image.size.height))
+        aView.backgroundColor = UIColor.blue// image.mostColor()
+        
+        window?.addSubview(aView)
     }
 
 }
