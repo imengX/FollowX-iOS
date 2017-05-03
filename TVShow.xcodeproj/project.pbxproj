@@ -43,9 +43,9 @@
 		7F244DF01E59951E00C6D97B /* SubjectInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F244DEF1E59951E00C6D97B /* SubjectInfoView.swift */; };
 		7F57FAD11CB4E66D0063BC02 /* TVShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F57FAD01CB4E66D0063BC02 /* TVShowTests.swift */; };
 		7F57FADC1CB4E66D0063BC02 /* TVShowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F57FADB1CB4E66D0063BC02 /* TVShowUITests.swift */; };
+		7F719EBD1EB9B638004E3F62 /* haha.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F719EBC1EB9B638004E3F62 /* haha.png */; };
 		DC3A5E5083B2E79AB39CEDEB /* Pods_TVShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4204035D3827D738CC779AD6 /* Pods_TVShow.framework */; };
 		F00FD3CC1EB96EBC00F6AE35 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FD3CB1EB96EBC00F6AE35 /* ImageExtension.swift */; };
-		F00FD4501EB9A46B00F6AE35 /* haha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F00FD44F1EB9A46B00F6AE35 /* haha.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,10 +111,10 @@
 		7F57FAD71CB4E66D0063BC02 /* TVShowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F57FADB1CB4E66D0063BC02 /* TVShowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowUITests.swift; sourceTree = "<group>"; };
 		7F57FADD1CB4E66D0063BC02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F719EBC1EB9B638004E3F62 /* haha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haha.png; sourceTree = "<group>"; };
 		9EE4C690A605F14F7206BB20 /* Pods-TVShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVShow/Pods-TVShow.release.xcconfig"; sourceTree = "<group>"; };
 		CEBD8567F4FF23BE331376A0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00FD3CB1EB96EBC00F6AE35 /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
-		F00FD44F1EB9A46B00F6AE35 /* haha.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = haha.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,7 @@
 		16E3461B1CF21C5D00544BD9 /* TVShow */ = {
 			isa = PBXGroup;
 			children = (
-				F00FD44F1EB9A46B00F6AE35 /* haha.jpg */,
+				7F719EBC1EB9B638004E3F62 /* haha.png */,
 				F00FD3C61EB96D0300F6AE35 /* Tools */,
 				16E3461C1CF21C5D00544BD9 /* AppDelegate.swift */,
 				16E3461D1CF21C5D00544BD9 /* Assets.xcassets */,
@@ -454,9 +454,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16E3465E1CF21C5D00544BD9 /* TSDiscoverCollectionViewCell.xib in Resources */,
-				F00FD4501EB9A46B00F6AE35 /* haha.jpg in Resources */,
 				16E3464D1CF21C5D00544BD9 /* Assets.xcassets in Resources */,
 				16E346791CF37CAF00544BD9 /* TSDiscoverBannerCollectionViewCell.xib in Resources */,
+				7F719EBD1EB9B638004E3F62 /* haha.png in Resources */,
 				16E346611CF21C5D00544BD9 /* TSDiscoverShelfCollectionViewCell.xib in Resources */,
 				16E3466C1CF21C5D00544BD9 /* Search.storyboard in Resources */,
 				16E3465C1CF21C5D00544BD9 /* TSDiscoverBannerHeader.xib in Resources */,
