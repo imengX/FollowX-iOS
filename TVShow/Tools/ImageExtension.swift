@@ -58,17 +58,11 @@ extension UIImage {
                 maxCount = tmpCount;
                 maxColor = curColor as? [Float];
             }
-            let r = maxColor?[0];
-            let g = maxColor?[1];
-            let b = maxColor?[2];
-            let a = maxColor?[3];
-            
-            if maxColor != nil{
-                return UIColor.init(red: CGFloat(r! / 255.0), green: CGFloat(g! / 255.0), blue: CGFloat(b! / 255.0), alpha: CGFloat(a! / 255.0));
-            }else{
-                return UIColor.white;
-            }
-            
+            let r:Float = (maxColor?[0])!;
+            let g:Float = (maxColor?[1])!;
+            let b:Float = (maxColor?[2])!;
+            let a:Float = (maxColor?[3])!;
+            return UIColor.init(red: CGFloat(r / 255.0), green: CGFloat(g / 255.0), blue: CGFloat(b / 255.0), alpha: CGFloat(a / 255.0));
         } else {
             return UIColor.white;
         }
