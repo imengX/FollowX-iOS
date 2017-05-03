@@ -37,7 +37,8 @@ extension UIImage {
                     let green = data.load(fromByteOffset: offset+2, as: UInt8.self)
                     let blue = data.load(fromByteOffset: offset+3, as: UInt8.self)
                     
-                    let clr = [red,green,blue,alpha]
+//                    let clr = [red,green,blue,alpha]
+                    let clr = [Double(red),Double(green),Double(blue),Double(alpha)]
                     cls.add(clr)
                     
                 }
@@ -45,7 +46,7 @@ extension UIImage {
             
             let enumerator:NSEnumerator = cls.objectEnumerator();
 //            var curColor:NSArray? = nil;
-            var maxColor:[Int]? = [];
+            var maxColor:[Float]? = nil;
             var maxCount:Int = 0;
             
             while let curColor = enumerator.nextObject() as? NSArray {
@@ -56,14 +57,14 @@ extension UIImage {
                 }
 //
                 maxCount = tmpCount;
-                maxColor = curColor as? [Int];
+                maxColor = curColor as? [Float];
             }
             let r = maxColor?[0];
             let g = maxColor?[1];
             let b = maxColor?[2];
             let a = maxColor?[3];
-            
-            return UIColor.init(red: CGFloat(Float(r!) / 255.0), green: CGFloat(Float(g!) / 255.0), blue: CGFloat(Float(b!) / 255.0), alpha: CGFloat(Float(a!) / 255.0));
+
+            return UIColor.init(red: CGFloat(r! / 255.0), green: CGFloat(g! / 255.0), blue: CGFloat(b! / 255.0), alpha: CGFloat(a! / 255.0));
         } else {
             return UIColor.white;
         }
