@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
+        let image:UIImage = UIImage.init(named: "haha.jpg")!;
+        image.mostColor();
     }
 
 }

@@ -45,6 +45,7 @@
 		7F57FADC1CB4E66D0063BC02 /* TVShowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F57FADB1CB4E66D0063BC02 /* TVShowUITests.swift */; };
 		DC3A5E5083B2E79AB39CEDEB /* Pods_TVShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4204035D3827D738CC779AD6 /* Pods_TVShow.framework */; };
 		F00FD3CC1EB96EBC00F6AE35 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FD3CB1EB96EBC00F6AE35 /* ImageExtension.swift */; };
+		F00FD4501EB9A46B00F6AE35 /* haha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F00FD44F1EB9A46B00F6AE35 /* haha.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		9EE4C690A605F14F7206BB20 /* Pods-TVShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVShow/Pods-TVShow.release.xcconfig"; sourceTree = "<group>"; };
 		CEBD8567F4FF23BE331376A0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00FD3CB1EB96EBC00F6AE35 /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		F00FD44F1EB9A46B00F6AE35 /* haha.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = haha.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		16E3461B1CF21C5D00544BD9 /* TVShow */ = {
 			isa = PBXGroup;
 			children = (
+				F00FD44F1EB9A46B00F6AE35 /* haha.jpg */,
 				F00FD3C61EB96D0300F6AE35 /* Tools */,
 				16E3461C1CF21C5D00544BD9 /* AppDelegate.swift */,
 				16E3461D1CF21C5D00544BD9 /* Assets.xcassets */,
@@ -451,6 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16E3465E1CF21C5D00544BD9 /* TSDiscoverCollectionViewCell.xib in Resources */,
+				F00FD4501EB9A46B00F6AE35 /* haha.jpg in Resources */,
 				16E3464D1CF21C5D00544BD9 /* Assets.xcassets in Resources */,
 				16E346791CF37CAF00544BD9 /* TSDiscoverBannerCollectionViewCell.xib in Resources */,
 				16E346611CF21C5D00544BD9 /* TSDiscoverShelfCollectionViewCell.xib in Resources */,
