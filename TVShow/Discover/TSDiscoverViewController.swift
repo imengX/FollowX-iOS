@@ -10,22 +10,31 @@ import UIKit
 import AlamofireObjectMapper
 import Alamofire
 import SwiftyJSON
+import WebKit
+
+import Kanna
 
 private let reuseIdentifier = "Cell"
 private let emptyReuseIdentifier = "EmptyCell"
 
-let DiscoverSectionURL0 = "http://api.douban.com/v2/movie/in_theaters"
-let DiscoverSectionURL1 = "http://api.douban.com/v2/movie/coming_soon"
-let DiscoverSectionURL2 = "http://api.douban.com/v2/movie/top250"
+//let DiscoverSectionURL0 = "http://api.douban.com/v2/movie/in_theaters"
+//let DiscoverSectionURL1 = "http://api.douban.com/v2/movie/coming_soon"
+//let DiscoverSectionURL2 = "http://api.douban.com/v2/movie/top250"
+//
+//let SearchURL = "http://api.douban.com/v2/movie/search"
+//
+//let DiscoverAPI = [DiscoverSectionURL0, DiscoverSectionURL1, DiscoverSectionURL2];
 
-let SearchURL = "http://api.douban.com/v2/movie/search"
+let DiscoverAPI = "https://m.douban.com/tv/"
 
-let DiscoverAPI = [DiscoverSectionURL0, DiscoverSectionURL1, DiscoverSectionURL2];
-
-class TSDiscoverViewController: UICollectionViewController,UISearchBarDelegate {
+class TSDiscoverViewController: UIViewController,UISearchBarDelegate,WKNavigationDelegate {
     var subjects = [String:DBSubjects]()
     var contentObjects = [String:TSDiscoverSectionController]()
     var bannerObjects = [JSON]()
+    
+    var webView = WKWebView(frame:UIScreen.main.bounds)
+    var htmlRenderView = WKWebView(frame:UIScreen.main.bounds)
+    
     
     // MARK: - Left Cycle
     
@@ -36,125 +45,92 @@ class TSDiscoverViewController: UICollectionViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:"reload", style: .plain, target:self , action:#selector(self.fetchData))
         
-        // Register cell classes
-        let headerNib = UINib(nibName: "TSDiscoverBannerHeader", bundle: Bundle.main)
-        self.collectionView!.register(headerNib, forSupplementaryViewOfKind: IOStickyHeaderParallaxHeader, withReuseIdentifier: "header")
+        self.htmlRenderView.navigationDelegate = self
+        self.webView.navigationDelegate = self
         
-        let screenBounds = UIScreen.main.bounds
-        // setup layout
-        if let layout: IOStickyHeaderFlowLayout = self.collectionView?.collectionViewLayout as? IOStickyHeaderFlowLayout {
-            layout.parallaxHeaderReferenceSize = CGSize(width: screenBounds.width, height:0.54 * screenBounds.width)
-            layout.parallaxHeaderMinimumReferenceSize = CGSize(width: screenBounds.width, height: 0)
-            layout.itemSize = CGSize(width: UIScreen.main.bounds.size.width, height: layout.itemSize.height)
-            layout.parallaxHeaderAlwaysOnTop = true
-            layout.disableStickyHeaders = true
-        }
+        self.view.addSubview(webView)
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: emptyReuseIdentifier)
-        
-        for i in 0 ..< DiscoverAPI.count {
-            let api = DiscoverAPI[i]
-            TSNetRequestManager.sharedInstance.request(api).validate().responseObject(completionHandler: { (response: DataResponse<DBSubjects>) in
-                switch response.result {
-                case .success(let value):
-                    self.addSectionSubjects(aSubjects: value, index: i)
-//                    self.collectionView?.reloadData()
-                case.failure(let error):
-                    print(error)
-                }
+        self.fetchData()
+    }
+    
+    // MARK: -
+    
+    func fetchData() {
+        self.htmlRenderView.load(URLRequest(url:URL(string: DiscoverAPI)!))
+    }
+    
+    
+    // MARK: - WKNavigationDelegate
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if webView == htmlRenderView {
+            htmlRenderView.evaluateJavaScript("document.documentElement.outerHTML.toString()",
+                                              completionHandler: { (html: Any?, error: Error?) in
+                                                let string = html as? String ?? "error"
+                                                print(string)
+                                                self.webView.loadHTMLString(self.filterHTML(string: string), baseURL: URL(string: self.htmlRenderView.url?.absoluteString ?? DiscoverAPI))
             })
         }
     }
     
-    // MARK:
-    func addSectionSubjects(aSubjects: DBSubjects, index: Int) {
-        let indexKey = String(index)
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        print(navigationAction.request.url ?? "nil request.url")
+        print(htmlRenderView.url ?? "nil url")
         
-        let sectionModel = TSDiscoverSectionController(subjects:aSubjects.subjects)
-        self.collectionView?.register(UINib.init(nibName: "TSDiscoverShelfCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier:sectionModel.sectionReuseIdentifier())
-        print(sectionModel.sectionReuseIdentifier())
+        if navigationAction.navigationType != .linkActivated {
+            decisionHandler(.allow)
+            return
+        }
         
-        collectionView?.performBatchUpdates({ 
-            self.subjects[indexKey] = aSubjects
-            self.contentObjects[indexKey] = sectionModel
-            self.collectionView?.reloadSections(IndexSet(integer:index))
-        }, completion: nil)
-    }
-    
-    // MARK: UICollectionViewDataSource
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return DiscoverAPI.count
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = contentObjects[String(indexPath.section)]
-        
-        if let aModel = model {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: aModel.sectionReuseIdentifier(), for: indexPath) as! TSDiscoverShelfCollectionViewCell
-            
-            aModel.collectionViewController = self
-            cell.collectionView.dataSource = aModel
-            cell.collectionView.delegate = aModel
-            return cell
-            
+        if webView == self.webView {
+            if (htmlRenderView.url?.absoluteString ?? "") == (navigationAction.request.url?.absoluteString ?? "") {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.cancel)
+                self.htmlRenderView.load(navigationAction.request)
+            }
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyReuseIdentifier, for: indexPath)
-            
-            return cell
+            decisionHandler(.allow)
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if UICollectionElementKindSectionHeader == kind {
-            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as! TSDiscoverSectionHeader
+    // MARK: - Helper
+    
+    func filterHTML(string:String) -> String {
+        
+        if let doc = HTML(html: string, encoding: .utf8){
+            /**
+            if let card = doc.at_css(".card") {
+//                doc.body = card
+                
+                let html = doc.head
+                
+                html?.addNextSibling(card)
+                return html?.innerHTML ?? ""
+            }
+            **/
             
-            if let model = subjects[String(indexPath.section)] {
-                if let string = model.title {
-                    sectionHeader.textLabel.text = string
-                } else {
-                    sectionHeader.textLabel.text = "暂无"
-                }
-            } else {
-                sectionHeader.textLabel.text = "加载中"
+            //home
+            if let talionNav = doc.at_css("#TalionNav") {
+                doc.body?.removeChild(talionNav)
             }
             
-            return sectionHeader
-        } else {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: IOStickyHeaderParallaxHeader, withReuseIdentifier: "header", for: indexPath) as! TSDiscoverBannerHeader
-            header.objects = self.bannerObjects
+            if let downloadApp = doc.at_css(".download-app") {
+                doc.body?.removeChild(downloadApp)
+            }
             
-            return header
+            if var page = doc.at_css(".page") {
+                page["style"] = "padding-top:0px"
+            }
+            //list
+            if var app = doc.at_css("#app") {
+                app["style"] = "padding-top:0px"
+            }
+
+            
+            return doc.innerHTML ?? ""
         }
+        return ""
     }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let text = searchBar.text {
-            TSNetRequestManager.sharedInstance.request(SearchURL, parameters:["q":text]).validate().responseJSON(completionHandler: { (response:DataResponse<Any>) in
-                switch response.result {
-                case .success(let value):
-                    print(value)
-                case .failure(let error):
-                    print(error)
-                }
-                
-            })
-        }
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

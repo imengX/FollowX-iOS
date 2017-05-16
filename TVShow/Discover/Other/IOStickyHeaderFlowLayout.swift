@@ -47,7 +47,7 @@ public class IOStickyHeaderFlowLayout: UICollectionViewFlowLayout {
     }
     
     public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
+        return super.layoutAttributesForElements(in: rect)
     
     var adjustedRec = rect
     adjustedRec.origin.y -= (self.parallaxHeaderReferenceSize?.height)!

@@ -8,8 +8,9 @@ target 'TVShow' do
 	pod 'SwiftyJSON', '~> 3.0'
 	pod 'AlamofireObjectMapper', '~> 4.0'
 	pod 'Moya', '~> 8.0.0'
-    pod 'Kingfisher', '~> 3.0'
+    pod 'Kingfisher', '3.6.2'
     pod 'DZNEmptyDataSet'
+	pod 'Kanna', '~> 2.1.0'
 end
 
 

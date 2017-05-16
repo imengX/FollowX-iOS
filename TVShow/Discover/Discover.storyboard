@@ -6,52 +6,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--探索-->
         <scene sceneID="xjP-pp-duu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g6n-O8-dY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController title="探索" id="NBR-vx-PR7" customClass="TSDiscoverViewController" customModule="TVShow" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JbY-4x-EN6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jSo-2x-y4Q" customClass="IOStickyHeaderFlowLayout" customModule="TVShow" customModuleProvider="target">
-                            <size key="itemSize" width="596.5" height="160"/>
-                            <size key="headerReferenceSize" width="50" height="30"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sectionHeader" id="E7S-zj-0bs" customClass="TSDiscoverSectionHeader" customModule="TVShow" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhF-er-g3e">
-                                    <rect key="frame" x="10" y="5.5" width="42" height="19.5"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="QhF-er-g3e" firstAttribute="centerY" secondItem="E7S-zj-0bs" secondAttribute="centerY" id="UCq-DB-Bb2"/>
-                                <constraint firstItem="QhF-er-g3e" firstAttribute="leading" secondItem="E7S-zj-0bs" secondAttribute="leading" constant="10" id="s22-Gb-Slc"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="textLabel" destination="QhF-er-g3e" id="h5V-eY-dfG"/>
-                            </connections>
-                        </collectionReusableView>
-                        <connections>
-                            <outlet property="dataSource" destination="NBR-vx-PR7" id="0B4-ul-o5L"/>
-                            <outlet property="delegate" destination="NBR-vx-PR7" id="OgP-NM-YNG"/>
-                        </connections>
-                    </collectionView>
                     <tabBarItem key="tabBarItem" systemItem="mostViewed" id="GJ2-Xp-cmI"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g6n-O8-dY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="948" y="-273"/>
         </scene>
